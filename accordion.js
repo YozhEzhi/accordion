@@ -1,44 +1,39 @@
 ;(function () {
-	var $accordioItems = document.querySelectorAll('.js-accordion-item'),
-		accordionId    = 'accordion',
-		$accordion     = document.getElementById(accordionId),
-		accordionClass = 'js-accordion-item',
-		openedClass    = 'opened';
+  var accordionClass = 'js-accordion-item';
+  var openedClass = 'opened';
+  var activeTab;
 
-	var ACCORDION = {
-		init: function() {
-			this.setUpListeners();
-		},
+  var ACCORDION = {
+    init: function () {
+      this.setUpListeners();
+    },
 
-		setUpListeners: function() {
-			$accordion.addEventListener('click', function(e) { ACCORDION.switchItemState(e); });
-		},
+    setUpListeners: function () {
+      document.addEventListener('click', function (e) { ACCORDION.switchItemState(e); });
+    },
 
-		switchItemState: function(e) {
-			e.stopPropagation();
+    switchItemState: function (e) {
+      e.stopPropagation();
 
-			var element = e.target;
+      var element = e.target;
 
-			if (element.id !== accordionId && !element.classList.contains(accordionClass)) {
-				var accordionItem = element.parentNode;
+      if (element.classList.contains(accordionClass)) {
+        element.classList.add(openedClass);
 
-				if (accordionItem.classList.contains(openedClass)) {
-					accordionItem.classList.remove(openedClass);
+        if (!!activeTab) {
+          activeTab.classList.remove(openedClass);
+        }
 
-					return false;
-				}
+        if (activeTab === element) {
+          activeTab = null;
 
-				ACCORDION.closeUpAll();
-				accordionItem.classList.add(openedClass);
-			}
-		},
+          return false;
+        }
 
-		closeUpAll: function() {
-			Array.prototype.forEach.call($accordioItems, function(el, i) {
-				el.classList.remove(openedClass);
-			});
-		}
-	};
+        activeTab = element;
+      }
+    },
+  };
 
-	ACCORDION.init();
+  ACCORDION.init();
 })();
