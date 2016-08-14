@@ -9,12 +9,13 @@
     },
 
     setUpListeners: function () {
-      document.addEventListener('click', function (e) { ACCORDION.switchItemState(e); });
+      document.addEventListener('click', function (e) {
+        ACCORDION.switchItemState(e);
+      });
     },
 
     switchItemState: function (e) {
       e.stopPropagation();
-
       var element = e.target;
 
       if (element.classList.contains(accordionClass)) {
