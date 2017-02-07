@@ -1,40 +1,23 @@
-;(function () {
-  var accordionClass = 'js-accordion-item';
-  var openedClass = 'opened';
-  var activeTab;
+let activeItem;
+let openedClass = 'opened';
 
-  var ACCORDION = {
-    init: function () {
-      this.setUpListeners();
-    },
+function switchItemState(e) {
+  let element = e.target;
+  if (!element.classList.contains('js-accordion-item')) return;
 
-    setUpListeners: function () {
-      document.addEventListener('click', function (e) {
-        ACCORDION.switchItemState(e);
-      });
-    },
+  element.classList.add(openedClass);
 
-    switchItemState: function (e) {
-      e.stopPropagation();
-      var element = e.target;
+  if (!!activeItem) {
+    activeItem.classList.remove(openedClass);
+  }
 
-      if (element.classList.contains(accordionClass)) {
-        element.classList.add(openedClass);
+  if (element === activeItem) {
+    activeItem = null;
 
-        if (!!activeTab) {
-          activeTab.classList.remove(openedClass);
-        }
+    return;
+  }
 
-        if (activeTab === element) {
-          activeTab = null;
+  activeItem = element;
+}
 
-          return false;
-        }
-
-        activeTab = element;
-      }
-    },
-  };
-
-  ACCORDION.init();
-})();
+document.addEventListener('click', event => switchItemState(event));

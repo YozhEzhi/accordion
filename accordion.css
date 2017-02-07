@@ -1,64 +1,83 @@
 * {
-	-webkit-box-sizing: border-box;
-			box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-	font-family: sans-serif;
+  align-items: center;
+  background:
+      radial-gradient(55% 330%, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.5) 550%),
+      linear-gradient(to top, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.6) 50%),
+      linear-gradient(to top right, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0.3) 120%);
+  background-color: #DFE3E4;
+  background-blend-mode: color-burn, screen, color-burn;
+  display: flex;
+  font-family: sans-serif;
 }
 
 p {
-	margin: 0;
+  margin: 0;
 }
 
 .wrapper {
-	margin: 0 auto;
-	max-width: 720px;
+  margin: 0 auto;
+  max-width: 720px;
 }
 
 .accordion {
-	list-style: none;
+  list-style: none;
+  margin: 0;
 }
 
 .accordion-item {
-	margin: 0 0 10px;
+  margin: 0 0 10px;
 }
 
 .accordion-title {
-	background: #696969;
-	-webkit-border-radius: 21px;
-			border-radius: 21px;
-	color: #FFF;
-	cursor: pointer;
-	padding: 10px 20px;
-	position: relative;
-	-webkit-user-select: none;
-	        user-select: none;
+  background: #6c7a89;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12),
+              0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 20px;
+  position: relative;
+  transition: box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.accordion-title:not(.opened):hover {
+  box-shadow: 0 5px 8px rgba(0,0,0,0.25),
+              0 3px 3px rgba(0,0,0,0.22);
 }
 
 .opened.accordion-title {
-	background: #FF8563;
+  background: #ff8563;
 }
 
 .accordion-text {
-	background: #E7E7E7;
-	-webkit-border-radius: 0 0 21px 21px;
-	        border-radius: 0 0 21px 21px;
-    height: 0;
-	overflow: hidden;
-	padding: 0;
-	-webkit-transition: padding-left 0.3s ease;
-	        transition: padding-left 0.3s ease;
+  background: #f0f0f0;
+  border-radius: 0 0 20px 20px;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  transition: padding-left 0.3s ease;
 }
 
 .opened + .accordion-text {
-	height: auto;
-	margin: -20px 0 0;
-	padding: 30px 20px 5px;
+  height: auto;
+  margin: -20px 0 0;
+  padding: 30px 20px 5px;
 }
 
 .accordion-text-item {
-	color: #4F4F4F;
-	list-style: none;
-	margin: 0 0 10px;
+  color: #4f4f4f;
+  list-style: none;
+  margin: 0 0 10px;
 }
